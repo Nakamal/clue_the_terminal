@@ -1,7 +1,7 @@
 module RoomsViews
   def rooms_show_view(room)
     puts
-    puts room["name"]
+    puts room.name
     puts
   end
 

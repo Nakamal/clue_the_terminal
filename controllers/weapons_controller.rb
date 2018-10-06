@@ -8,7 +8,7 @@ module WeaponsController
   def weapons_show_action
     print "How do think they did it?: "
     weapon_id = gets.chomp
-    response = HTTP.get("http://localhost:3000/api/weapons/#{weapon_id}")
-    weapons_show_view(response.parse)
+    weapon = Weapon.find(weapon_id)
+    weapons_show_view(weapon)
   end
 end

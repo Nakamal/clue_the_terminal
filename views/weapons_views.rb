@@ -1,7 +1,7 @@
 module WeaponsViews
   def weapons_show_view(weapon)
     puts
-    puts weapon["name"]
+    puts weapon.name
     puts
   end
 

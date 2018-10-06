@@ -8,7 +8,7 @@ module RoomsController
   def rooms_show_action
     print "Where do you think the murder happened?: "
     room_id = gets.chomp
-    response = HTTP.get("http://localhost:3000/api/rooms/#{room_id}")
-    rooms_show_view(response.parse)
+    room = Room.find(room_id)
+    rooms_show_view(room)
   end
 end
