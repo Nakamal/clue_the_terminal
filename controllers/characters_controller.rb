@@ -1,8 +1,8 @@
 module CharactersController
   def characters_index_action
-    response = HTTP.get("http://localhost:3000/api/characters")
-    characters_index_view(response.parse)
-    response.parse
+    characters = Character.all
+    characters_index_view(characters)
+    characters
   end
 
   def characters_show_action

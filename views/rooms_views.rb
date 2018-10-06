@@ -5,12 +5,12 @@ module RoomsViews
     puts
   end
 
-  def rooms_index_view(rooms_array)
+  def rooms_index_view(rooms)
     puts
     puts "Rooms"
     puts "-" * 30
-    rooms_array.each do |rooms_hash|
-      puts "#{rooms_hash["id"]} - #{rooms_hash["name"]}"
+    rooms.each do |room|
+      puts "#{room.id} - #{room.name}"
     end
     puts 
   end

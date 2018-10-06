@@ -9,8 +9,8 @@ module WeaponsViews
     puts
     puts "Weapons"
     puts "-" * 30
-    weapons_array.each do |weapons_hash|
-      puts "#{weapons_hash["id"]} - #{weapons_hash["name"]}"
+    weapons_array.each do |weapon|
+      puts "#{weapon.id} - #{weapon.name}"
     end
     puts 
   end

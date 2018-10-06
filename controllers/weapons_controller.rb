@@ -1,8 +1,8 @@
 module WeaponsController
   def weapons_index_action
-    response = HTTP.get("http://localhost:3000/api/weapons")
-    weapons_index_view(response.parse)
-    response.parse
+    weapons = Weapon.all
+    weapons_index_view(weapons)
+    weapons
   end
 
   def weapons_show_action

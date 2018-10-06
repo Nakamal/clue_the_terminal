@@ -18,4 +18,9 @@ class Character
     response = HTTP.get("http://localhost:3000/api/characters/#{input_id}")
     Character.new(response.parse)
   end
+
+  def self.all
+    response = HTTP.get("http://localhost:3000/api/characters")
+    response.parse.map { |character_hash| Character.new(character_hash) }
+  end
 end

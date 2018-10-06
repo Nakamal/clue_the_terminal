@@ -1,8 +1,8 @@
 module RoomsController
   def rooms_index_action
-    response = HTTP.get("http://localhost:3000/api/rooms")
-    rooms_index_view(response.parse)
-    response.parse
+    rooms = Room.all
+    rooms_index_view(rooms)
+    rooms
   end
 
   def rooms_show_action

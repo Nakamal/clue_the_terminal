@@ -6,12 +6,12 @@ module CharactersViews
     puts
   end
 
-  def characters_index_view(character_array)
+  def characters_index_view(characters)
     puts
     puts "Characters"
     puts "-" * 30
-    character_array.each do |character_hash|
-       puts "#{character_hash["id"]} - #{Paint[character_hash["name"], character_hash["color"].downcase]}"
+    characters.each do |character|
+       puts "#{character.id} - #{character.formatted_name}"
     end
     puts
   end
