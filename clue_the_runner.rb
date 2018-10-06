@@ -1,6 +1,10 @@
 require 'http'
 require 'paint'
 
+require_relative "models/character"
+require_relative "models/weapon"
+require_relative "models/room"
+
 require_relative "views/characters_views"
 require_relative "views/weapons_views"
 require_relative "views/rooms_views"

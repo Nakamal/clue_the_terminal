@@ -1,8 +1,8 @@
 module CharactersViews
   def characters_show_view(character)
     puts
-    puts character["name"]
-    puts "Piece Color: #{character["color"]}"
+    puts character.formatted_name
+    puts "Piece Color: #{character.formatted_color}"
     puts
   end
 

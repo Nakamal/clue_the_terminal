@@ -8,7 +8,7 @@ module CharactersController
   def characters_show_action
     print "What is the id of the character you want to pick: "
     character_id = gets.chomp
-    response = HTTP.get("http://localhost:3000/api/characters/#{character_id}")
-    characters_show_view(response.parse)
+    character = Character.find(character_id)
+    characters_show_view(character)
   end
 end
