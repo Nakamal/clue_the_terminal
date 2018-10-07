@@ -11,7 +11,7 @@ class Room
   end
 
   def self.all
-    response = HTTP.get("http://localhost:3000/api/rooms/")
+    response = HTTP.get("http://localhost:3000/api/rooms")
     response.parse.map { |room_hash| Room.new(room_hash) }
   end
 end

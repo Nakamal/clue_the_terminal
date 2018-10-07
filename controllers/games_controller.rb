@@ -5,18 +5,18 @@ module GamesController
     character_id = gets.chomp.to_i
     characters_hash = characters.map { |character| [character.id, character.name] }.to_h
 
-    weapons_response = weapons_index_action
+    weapons = weapons_index_action
     print "Which weapon id? "
     weapon_id = gets.chomp.to_i
-    weapons = weapons.map {|weapon| [weapon.id, weapon.name] }.to_h
+    weapons_hash = weapons.map { |weapon| [weapon.id, weapon.name] }.to_h
 
-    rooms_response = rooms_index_action
+    rooms = rooms_index_action
     print "Which room id? " 
     room_id = gets.chomp.to_i
     rooms_hash = rooms.map { |room| [room.id, room.name] }.to_h
     
     puts
-    accusation_view(character: characters_hash[character_id], room: rooms[room_id], weapon: weapons[weapon_id])
+    accusation_view(character: characters_hash[character_id], room: rooms_hash[room_id], weapon: weapons_hash[weapon_id])
   end
 end
 

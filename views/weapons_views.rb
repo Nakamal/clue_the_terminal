@@ -5,11 +5,11 @@ module WeaponsViews
     puts
   end
 
-  def weapons_index_view(weapons_array)
+  def weapons_index_view(weapons)
     puts
     puts "Weapons"
     puts "-" * 30
-    weapons_array.each do |weapon|
+    weapons.each do |weapon|
       puts "#{weapon.id} - #{weapon.name}"
     end
     puts 
