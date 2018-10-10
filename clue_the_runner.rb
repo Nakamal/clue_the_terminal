@@ -62,23 +62,6 @@ class MainGame
     end
   end
 
-  # def participation
-  #   puts 
-  #   puts "Will you be player 1 or 2 today? "
-  #   selection = gets.chomp
-  #   puts
-  #   if selection == "1"
-  #     puts "which character would you like to choose? "
-  #     @players << @characters 
-  #     p @players
-  #   elsif selection == "2"
-  #     puts
-  #     puts "And who will you be?"
-  #     @players << @characters
-  #     p @players
-  #   end 
-  # end
-
   def run
     system "clear"
 
