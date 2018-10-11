@@ -33,44 +33,60 @@ class MainGame
   include GamesController
 
   def initialize
-    @current_game_id = HTTP.post("http://localhost:3000/api/games").parse["id"]
+    system "clear"
 
+    puts
+    puts "You have found...Clue the App!"
+    puts
+    puts "Would you like to Start a new game?"
+    puts "OR"
+    puts "Join an existing mystery?"
     puts 
-    print "player 1 & 2: "
-    @player_id = gets.chomp.to_i
-    puts 
+    print 'type "new" or "join": '
+    new_game_choice = gets.chomp
+
+    if new_game_choice == "new"
+      @current_game_id = HTTP.post("http://localhost:3000/api/games").parse["id"]
+      puts "You are now playing game number: #{@current_game_id}"
+    else
+      puts
+      print "Please enter game id: "
+      @current_game_id = gets.chomp.to_i
+      puts "Current Game Being Played: #{@current_game_id}"
+
+    end
 
     pick_player
-
   end
 
   def pick_player
+    print "Are you Player 1, Player 2 or Player 3: "
+    @player_id = gets.chomp.to_i
+
     while true
       puts 
-      characters_index_action
+      parsed_response = HTTP.get("http://localhost:3000/api/games/#{@current_game_id}").parse
+      parsed_response["available_characters"].each do |character_hash|
+        puts "#{character_hash["id"]} - #{character_hash["name"]}"
+      end
+
       puts
       print "pick a character id: "  
       character_id = gets.chomp.to_i
-      # puts "creating a participation"
-      # puts @current_game_id
-      parsed_respone = HTTP.post("http://localhost:3000/api/games/#{@current_game_id}/participations?character_id=#{character_id}&player_id=#{@player_id}").parse
 
-      if parsed_respone["move_forward"]
+      parsed_response = HTTP.post("http://localhost:3000/api/games/#{@current_game_id}/participations?character_id=#{character_id}&player_id=#{@player_id}").parse
+
+      if parsed_response["move_forward"]
+        puts "we know this will error"
+        # what info do you have for json in a show/create for participations
         @player = Player.new()
-        return 
-      else
-
+        return true
       end
     end
   end
 
   def run
-    system "clear"
-
-    puts
-    puts "Welcome to Clue the App!"
-    puts
-
+    
     while true
       puts "Would you like to..."
       puts "   [1] View available_characters"
