@@ -4,6 +4,7 @@ require 'paint'
 require_relative "models/character"
 require_relative "models/weapon"
 require_relative "models/room"
+require_relative "models/player"
 
 require_relative "views/characters_views"
 require_relative "views/weapons_views"
@@ -50,7 +51,8 @@ class MainGame
       puts
       print "pick a character id: "  
       character_id = gets.chomp.to_i
-
+      # puts "creating a participation"
+      # puts @current_game_id
       parsed_respone = HTTP.post("http://localhost:3000/api/games/#{@current_game_id}/participations?character_id=#{character_id}&player_id=#{@player_id}").parse
 
       if parsed_respone["move_forward"]
