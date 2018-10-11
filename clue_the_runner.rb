@@ -53,9 +53,7 @@ class MainGame
       print "Please enter game id: "
       @current_game_id = gets.chomp.to_i
       puts "Current Game Being Played: #{@current_game_id}"
-
     end
-
     pick_player
   end
 
@@ -76,9 +74,12 @@ class MainGame
 
       parsed_response = HTTP.post("http://localhost:3000/api/games/#{@current_game_id}/participations?character_id=#{character_id}&player_id=#{@player_id}").parse
 
+      # not able to read the render from API participstion controller
+      # maybe make the opetion to choose a character have to have a unique id in order to run so it doesnt loop
+      # not sure how to store @player so that I can develop logic to that player to have a turn once all characters are in the game
       if parsed_response["move_forward"]
-        puts "we know this will error"
-        # what info do you have for json in a show/create for participations
+        puts "*" * 50
+        puts "Congrats you've found where it errors out!"
         @player = Player.new()
         return true
       end
