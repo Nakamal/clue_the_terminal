@@ -1,0 +1,32 @@
+1 - waiting screen before there is confirmation that it has begun (after you have chosen your character)
+
+2 - the player who initializes the game needs to be able to hit a button that in fact, begins the game. two parts: 1) the ability in the terminal app to send a message to start a game and 2) for the API to store that a game has started.
+
+3 - other players need to check if the game has started, in which they game will go into turn mode 
+
+4 - when game is started, a deck of cards must be created for this game, randomly select one character, weapon and room for classified. Then randomly deal the rest to the other players 
+
+5 - make sheet info between this participation and these cards 
+
+6 - the ability to edit sheet info (both front & back end)
+
+* - assign whose turn it is (turn order for characters is pre defined)
+
+7 - show the location of a player
+
+8 - display the cards in the players hand
+
+9 - ability to choose room for your location & document it in the API
+
+10 - ability to make a suggestion (collect a room, character and weapon for suggetion)
+
+11 - automatically show the first card your opponent has if it is part of your suggestion ( also ends turns)
+
+12 - make accusation which compairs to the confidential file (automatic win lose scenario)
+
+13 - move to next persons turn on the api (updating API)
+
+14 - allow players to update and check current turn
+
+15 - win condition , lets all player know if someone has won and the game is over
+
