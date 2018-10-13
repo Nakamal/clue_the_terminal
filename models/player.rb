@@ -6,9 +6,4 @@ class Player
     @username = player_options_hash["username"]
     @character = Character.new(character_options_hash)
   end
-  def game_start
-    begin_game = gets.chomp
-    if begin_game == "yes"
-      
-  end
 end

@@ -46,16 +46,45 @@ class MainGame
     new_game_choice = gets.chomp
 
     if new_game_choice == "new"
+      @initialized_game = true
       @current_game_id = HTTP.post("http://localhost:3000/api/games").parse["id"]
       puts "You are now playing game number: #{@current_game_id}"
     else
+      @initialized_game = false
       puts
       print "Please enter game id: "
       @current_game_id = gets.chomp.to_i
       puts "Current Game Being Played: #{@current_game_id}"
     end
     pick_player
+    waiting
   end
+
+def waiting
+  while true
+    system "clear"
+    puts "waiting to start..."
+
+    if @initialized_game 
+      print "If all the players are in, then type 'start' and press enter: "
+      onclick = gets.chomp
+
+      if onclick == "start"
+        parsed_response = HTTP.patch("http://localhost:3000/api/games/#{@current_game_id}/start?initialized_game=true").parse
+      end
+    else
+      puts "Check if it's time to start the game, by pressing enter"
+      gets.chomp
+
+      parsed_response = HTTP.patch("http://localhost:3000/api/games/#{@current_game_id}/start").parse
+    end
+
+    if parsed_response["start_game"]
+      puts "game started -- Move On in the code."
+      return true
+    end
+  end
+end
 
   def pick_player
     print "Are you Player 1, Player 2 or Player 3: "
