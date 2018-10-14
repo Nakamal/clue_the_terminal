@@ -1,9 +1,3 @@
-4 - when game is started, a deck of cards must be created for this game, randomly select one character, weapon and room for classified. Then randomly deal the rest to the other players 
-
-5 - make sheet info between this participation and these cards 
-
-6 - the ability to edit sheet info (both front & back end)
-
 * - assign whose turn it is (turn order for characters is pre defined)
 
 7 - show the location of a player
