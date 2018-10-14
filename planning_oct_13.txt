@@ -1,9 +1,3 @@
-1 - waiting screen before there is confirmation that it has begun (after you have chosen your character)
-
-2 - the player who initializes the game needs to be able to hit a button that in fact, begins the game. two parts: 1) the ability in the terminal app to send a message to start a game and 2) for the API to store that a game has started.
-
-3 - other players need to check if the game has started, in which they game will go into turn mode 
-
 4 - when game is started, a deck of cards must be created for this game, randomly select one character, weapon and room for classified. Then randomly deal the rest to the other players 
 
 5 - make sheet info between this participation and these cards 
@@ -24,7 +18,7 @@
 
 12 - make accusation which compairs to the confidential file (automatic win lose scenario)
 
-13 - move to next persons turn on the api (updating API)
+13 - move to next persons turn on the api (update API)
 
 14 - allow players to update and check current turn
 
