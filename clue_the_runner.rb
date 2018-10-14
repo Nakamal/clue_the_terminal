@@ -111,8 +111,6 @@ end
 
       
       if parsed_response["move_forward"]
-        puts "*" * 50
-        puts "Congrats you've found where it errors out!"
         @player = Player.new(parsed_response["player"], parsed_response["character"])
         @participation_id = parsed_response["id"]
         return true
@@ -125,6 +123,16 @@ end
     @hand.display
     puts "*****************"
     @detective_sheet.display
+    whos_on_first
+  end
+
+  def whos_on_first
+    participations = HTTP.get("http://localhost:3000/api/games/#{@current_game_id}/participations").parse
+    participations.each do |participation|
+      puts "***************************"
+      puts participation["character"]["id"]
+      puts "***************************"
+    end
   end
 
   def run
