@@ -5,6 +5,9 @@ require_relative "models/character"
 require_relative "models/weapon"
 require_relative "models/room"
 require_relative "models/player"
+require_relative "models/card"
+require_relative "models/hand"
+require_relative "models/detective_sheet"
 
 require_relative "views/characters_views"
 require_relative "views/weapons_views"
@@ -82,8 +85,8 @@ def waiting
     if parsed_response["start_game"]
       puts "game started -- Move On in the code."
       parsed_response = HTTP.get("http://localhost:3000/api/participations/#{@participation_id}/sheet").parse
-      @hand = parsed_response["cards"]
-      @detective_sheet = parsed_response["sheet_infos"]
+      @hand = Hand.new(parsed_response["cards"])
+      @detective_sheet = DetectiveSheet.new(parsed_response["sheet_infos"])
       return true
     end
   end
@@ -119,9 +122,9 @@ end
 
   def play
     system "clear"
-    p @hand
+    @hand.display
     puts "*****************"
-    p @detective_sheet
+    @detective_sheet.display
   end
 
   def run
