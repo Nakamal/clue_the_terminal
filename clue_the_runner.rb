@@ -81,6 +81,9 @@ def waiting
 
     if parsed_response["start_game"]
       puts "game started -- Move On in the code."
+      parsed_response = HTTP.get("http://localhost:3000/api/participations/#{@participation_id}/sheet").parse
+      @hand = parsed_response["cards"]
+      @detective_sheet = parsed_response["sheet_infos"]
       return true
     end
   end
@@ -108,9 +111,17 @@ end
         puts "*" * 50
         puts "Congrats you've found where it errors out!"
         @player = Player.new(parsed_response["player"], parsed_response["character"])
+        @participation_id = parsed_response["id"]
         return true
       end
     end
+  end
+
+  def play
+    system "clear"
+    p @hand
+    puts "*****************"
+    p @detective_sheet
   end
 
   def run
@@ -161,5 +172,5 @@ end
 end
 
 
-MainGame.new.run
+MainGame.new.play
  

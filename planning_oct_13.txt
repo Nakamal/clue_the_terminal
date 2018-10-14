@@ -2,7 +2,6 @@
 
 7 - show the location of a player
 
-8 - display the cards in the players hand
 
 9 - ability to choose room for your location & document it in the API
 
