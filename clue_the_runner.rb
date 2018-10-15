@@ -120,15 +120,21 @@ end
   end
 
   def play
-    system "clear"
-    @hand.display
-    puts "*****************"
-    @detective_sheet.display
+    while true
+      system "clear"
+      @hand.display
+      puts "*****************"
+      @detective_sheet.display
+      puts "press enter to check if it's your turn"
+      puts "if you do not see a difference, wait until the other player takes their turn."
+      gets
+      decisions
+    end
   end
 
   def decisions
-    # my_turn = call to determine if it is my_turn
-    if my_turn
+    turn_check = HTTP.get("http://localhost:3000/api/participations/#{@participation_id}/turn_check").parse
+    if turn_check["my_turn"]
       legit_room = false
       until legit_room
         puts 
@@ -143,24 +149,29 @@ end
       @current_location = choosen_rooms.first.name
       # make an api call that updates your location
 
-      @hand.display
-      puts "*" * 30
-      @detective_sheet.display
+      # @hand.display
+      # puts "*" * 30
+      # @detective_sheet.display
 
-      puts "Would you like to make a suggestion?"
-      puts
-      puts "OR...Bum bum bum bum..."
-      puts
-      puts "Make an accusation!"
+      # puts "Would you like to make a suggestion?"
+      # puts
+      # puts "OR...Bum bum bum bum..."
+      # puts
+      # puts "Make an accusation!"
 
-      choice = gets.chomp
+      # choice = gets.chomp
 
-      if choice == "suggestion"
-        suggestion_action
-      elsif choice == "accusation"
-        accusation_action
-      end 
-      # make call that moves api to the next turn
+      # if choice == "suggestion"
+      #   suggestion_action
+      # elsif choice == "accusation"
+      #   accusation_action
+      # end 
+      take_turn = HTTP.patch(
+                            "http://localhost:3000/api/participations/#{@participation_id}/turn",
+                            form: {
+                                   new_location: @current_location
+                                  }
+                            ).parse
     end
   end
 
