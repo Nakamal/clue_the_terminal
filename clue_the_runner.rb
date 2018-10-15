@@ -37,6 +37,7 @@ class MainGame
 
   def initialize
     system "clear"
+    @rooms = Room.all
 
     puts
     puts "You have found...Clue the App!"
@@ -123,15 +124,43 @@ end
     @hand.display
     puts "*****************"
     @detective_sheet.display
-    whos_on_first
   end
 
-  def whos_on_first
-    participations = HTTP.get("http://localhost:3000/api/games/#{@current_game_id}/participations").parse
-    participations.each do |participation|
-      puts "***************************"
-      puts participation["character"]["id"]
-      puts "***************************"
+  def decisions
+    # my_turn = call to determine if it is my_turn
+    if my_turn
+      legit_room = false
+      until legit_room
+        puts 
+        rooms_index_view(@rooms)
+        puts "What room would you like to go to?"
+        choice = gets.chomp
+
+        choosen_rooms = @rooms.select {|room| room.name == choice }
+        legit_room = choosen_rooms.any?
+      end
+
+      @current_location = choosen_rooms.first.name
+      # make an api call that updates your location
+
+      @hand.display
+      puts "*" * 30
+      @detective_sheet.display
+
+      puts "Would you like to make a suggestion?"
+      puts
+      puts "OR...Bum bum bum bum..."
+      puts
+      puts "Make an accusation!"
+
+      choice = gets.chomp
+
+      if choice == "suggestion"
+        suggestion_action
+      elsif choice == "accusation"
+        accusation_action
+      end 
+      # make call that moves api to the next turn
     end
   end
 

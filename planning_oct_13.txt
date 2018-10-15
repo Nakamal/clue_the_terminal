@@ -1,7 +1,3 @@
-* - assign whose turn it is (turn order for characters is pre defined)
-
-7 - show the location of a player
-
 
 9 - ability to choose room for your location & document it in the API
 

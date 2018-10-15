@@ -17,5 +17,7 @@ module GamesController
     
     puts
     accusation_view(character: characters_hash[character_id], room: rooms_hash[room_id], weapon: weapons_hash[weapon_id])
+    # send call to api to check accusation against the classified cards
+    # should return weather you won or lost so you can win or lose
   end
 end
