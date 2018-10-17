@@ -1,3 +1,1 @@
-1 - automatically show the first card your opponent has if it is part of your suggestion ( also ends turns)
-
 2- let players know game is over
