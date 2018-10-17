@@ -179,7 +179,7 @@ end
                                    weapon: murder_item
                                   }
                             ).parse
-      p take_turn
+      @detective_sheet = DetectiveSheet.new(take_turn["sheet_infos"])
     end
   end
 
