@@ -1,1 +1,1 @@
-2- let players know game is over
+1- let players know game is over

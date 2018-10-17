@@ -169,7 +169,7 @@ end
       choice = gets.chomp
 
       accusation = (choice == "accusation") 
-      
+
       take_turn = HTTP.patch(
                             "http://localhost:3000/api/participations/#{@participation_id}/turn",
                             form: {
@@ -179,6 +179,7 @@ end
                                    weapon: murder_item
                                   }
                             ).parse
+      p take_turn
     end
   end
 
