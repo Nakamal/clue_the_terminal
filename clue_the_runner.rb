@@ -147,29 +147,36 @@ end
       end
 
       @current_location = choosen_rooms.first.name
-      # make an api call that updates your location
 
-      # @hand.display
-      # puts "*" * 30
-      # @detective_sheet.display
+      @hand.display
+      puts "*" * 30
+      @detective_sheet.display
 
-      # puts "Would you like to make a suggestion?"
-      # puts
-      # puts "OR...Bum bum bum bum..."
-      # puts
-      # puts "Make an accusation!"
+      characters_index_action
+      print "Which shifty suspect do you think committed this heinous act? "
+      suspect = gets.chomp
 
-      # choice = gets.chomp
+      weapons_index_action
+      print "And how do you think said shifty suspect accomplished this vile feat? "
+      murder_item = gets.chomp
 
-      # if choice == "suggestion"
-      #   suggestion_action
-      # elsif choice == "accusation"
-      #   accusation_action
-      # end 
+      puts "Is that a suggestion?"
+      puts
+      puts "OR...Bum bum bum bum..."
+      puts
+      puts "An accusation!"
+
+      choice = gets.chomp
+
+      accusation = (choice == "accusation") 
+      
       take_turn = HTTP.patch(
                             "http://localhost:3000/api/participations/#{@participation_id}/turn",
                             form: {
-                                   new_location: @current_location
+                                   new_location: @current_location,
+                                   accusation: accusation, 
+                                   character: suspect,
+                                   weapon: murder_item
                                   }
                             ).parse
     end
